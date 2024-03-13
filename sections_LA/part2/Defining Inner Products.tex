@@ -1,0 +1,87 @@
+\section{Inner Product of A Vector Space}
+
+Now that we have talked about a lot of things about vector spaces, including the definitions, notions of linear dependence, basis, and transformation from one vector space to another, we talk about some more properties of the vector spaces that form a crucial backbone to other properties, that is the \textbf{inner product}
+
+
+\subsection{Definition}
+An inner product between two vectors of a vector space V defined over a field $\mathbb{R}$ is given by a function $\langle,\rangle: V \times V \to \mathbb{R}$ that satisfied the following properties:
+
+\begin{enumerate}
+    \item \textbf{Symmetry:}$\langle x,y \rangle$ = $\langle y,x \rangle$\
+    \item \textbf{Additive Linearity:} $\langle x, y+z \rangle$ = $\langle x, y \rangle$ + $\langle x, z \rangle$
+    \item \textbf{Scalar linearity}$\langle cx, y\rangle$ = c $\langle x, y \rangle$
+    \item \textbf{Positivity} $\langle x,x \rangle$ when $x\neq 0$ 
+    \end{enumerate}
+
+
+If we define the inner product over a complex field, then also every property is identical except the fact that \textbf{symmetry} is replaced by \textbf{Hermitian Symmetry.}
+
+
+\subsection{Examples}
+
+Let us see some examples:
+
+\begin{enumerate}
+    \item In $\mathbb{R}^n, \langle v, w \rangle =v^Tw$, the usual dot product.
+    \item In $\mathbb{C}^n$, the expression $\langle x, y \rangle =x_1y_1 + x_2y_2+ ......$
+    It does not represent an inner product because it violates the Hermitian Symmetry. But in the Real field, this expression becomes a valid inner product.
+    \item We can also customize the coefficients of the multiplication. For example, in a real field $\mathbb{R}^n$, $\langle x, y \rangle =x_1y_1 + x_2y_2+ ......$ is a valid inner product, but instead we can take $\langle x, y \rangle =c_1x_1y_1 + c_2x_2y_2+ ......$, where $c_1, c_2, c_3... $ are real coefficients. It can only become a valid inner product if it satisfies the positivity criteria. For example in $\mathbb{R}^2, v_1w_1 +\frac{1}{2}
+    (v_1w_2 + v_2w_1) + \frac{1}{8}v_2w_2$ is NOT an inner product because the inner product can become negative for certain values of the vector components.
+    \item In the space of continuous real-values function on [0,1]: $\langle f,g \rangle =\int_0^1 f(t)g(t)dt$ is an inner product, for complex-valued function the valid expression takes the form $\langle f,g \rangle =\int_0^1 f(t)\bar{g(t)}dt$
+\end{enumerate}
+
+\subsection{Inner Product representation in basis}
+
+We take our old real-valued finite dimensional vector space V and $e_1. e_2. e_3, .... e_n$ are its basis. So, how do we define the inner product if the basis is \textbf{not orthogonal in general}?
+
+$$\langle v,w \rangle = \langle \sum_i v_i e_i, \sum_j w_j e_j=\sum_{i,j} v_i w_j \langle e_i, e_j \rangle$$
+
+Now, in the case of orthogonal basis vectors, $\langle e_i, e_j \rangle =\delta_{ij}$, but in general, it is not. So, we define a matrix $H_{ij}=\langle e_i, e_j \rangle$. This matrix is symmetric. So, The inner product is defined as:
+
+$$\langle v,w \rangle= v^THw$$
+ The positivity of the inner product means $v^THv\geq 0$ with equality if and only if v=0. Such a matrix H is called positive definite. 
+
+ \subsection{Norm of a Vector}
+
+ The norm of a vector of a vector space is defined as: $$||x||=\langle x,x \rangle ^{1/2}$$
+
+ What are the properties of norms?
+
+ \begin{enumerate}
+     \item \textbf{Positivty:} $||x||>0$, equality if and only if x=0
+     \item \textbf{Homogeneity:} $||cx||=|c|||x||$
+     \item \textbf{Triangle Inequality:} $||x+y||^2=\langle x+y, x+y \rangle$
+ \end{enumerate}
+
+ \subsection{Cauchy-Schwartz Inequality}
+
+ If V is a real or complex-valued vector space and v and w are two vectors of this vector space then: $$|\langle v,w\rangle|^2 \leq \langle v,v\rangle \langle w,w \rangle$$
+
+ Or in terms of norms,s we can write it as:
+
+$$|\langle v,w\rangle| \leq ||v|| ||w||$$
+
+equality only holds if v and w are parallel, i.e., $v=\lambda w$ for $\lambda \in \mathbb{F}$
+ 
+
+ \textbf{Proof:}
+
+We can prove it from the positivity of the vectors. Let us say that we have two vectors, v 
+ and w, in the vector space. We first deal with the real case.
+
+ For every positive real t, we can have another vector in the vector spac,e which is given by:
+ v+tw and thus, from positivity criteria:
+
+ $$\langlev+tw , v+tw \rangle\geq 0 \implies ||v||^2 + t^2||w||^2 + 2t\langle v,w \rangle $$
+
+ we define this as a function of t and try to minimize it with respect to the parameter t. The minimum value should also be greater than or equal to 0.
+
+ We differentiate the above expression with respect to it and eventually, we can show that the optimal t is given by: 
+ $$t = \frac{-\langle v ,w \rangle}{||w||^2}$$
+
+ Putting the value and simplifying, we can get the desired inequality. equality holds precisely if v+tw=0, v=-tw.
+
+ For the complex case, choosing the same t will give the result. 
+ 
+
+ 

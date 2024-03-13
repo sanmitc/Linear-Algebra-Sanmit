@@ -1,0 +1,232 @@
+\section{Grahm-SchmidtOrthogonalization}
+
+This is a method for orthogonalizing some givn vectors to amek anorthonormal basis out of it. 
+
+\subsection{Procedure}
+
+Let $\{ \mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n \}$ be a set of linearly independent vectors.
+
+\subsection*{Initialization:}
+Start with the first vector, $\mathbf{v}_1$. The first vector in the orthogonal set ($\mathbf{u}_1$) is the same as the first vector in the given set.
+\[
+\mathbf{u}_1 = \mathbf{v}_1
+\]
+
+\subsection*{Projection and Subtraction:}
+For each subsequent vector $\mathbf{v}_i$ in the set, subtract its projections onto the previously determined orthogonal vectors ($\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_{i-1}$).
+\[
+\mathbf{u}_i = \mathbf{v}_i - \text{proj}(\mathbf{u}_1, \mathbf{v}_i) - \text{proj}(\mathbf{u}_2, \mathbf{v}_i) - \ldots - \text{proj}(\mathbf{u}_{i-1}, \mathbf{v}_i)
+\]
+where $\text{proj}(\mathbf{u}, \mathbf{v})$ is the projection of vector $\mathbf{v}$ onto vector $\mathbf{u}$, calculated as $\frac{\mathbf{v} \cdot \mathbf{u}}{\|\mathbf{u}\|^2} \mathbf{u}$.
+
+\subsection*{Normalization:}
+After obtaining the orthogonal vectors $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_i\}$, normalize them to form an orthonormal set.
+\[
+\mathbf{e}_i = \frac{\mathbf{u}_i}{\|\mathbf{u}_i\|}
+\]
+where $\|\mathbf{u}_i\|$ is the norm (magnitude) of vector $\mathbf{u}_i$.
+
+Following these steps, you end up with an orthonormal set $\{\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_i\}$ that spans the same subspace as the original set $\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n\}$. The Gram-Schmidt process is widely used in various applications, such as solving linear systems, least squares approximation, and eigenvalue problems.
+
+
+\subsection{Condensed Algorithm}
+
+\begin{algorithm}
+\caption{Gram-Schmidt Orthogonalization}
+\begin{algorithmic}[1]
+
+\Require Set of vectors $\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n\}$
+
+\State $\mathbf{u}_1 \gets \mathbf{v}_1$
+
+\For{$i \gets 2$ to $n$}
+    \State $\mathbf{u}_i \gets \mathbf{v}_i - \sum_{j=1}^{i-1} \text{proj}(\mathbf{u}_j, \mathbf{v}_i)$
+    \Comment{where $\text{proj}(\mathbf{u}, \mathbf{v}) = \frac{\mathbf{v} \cdot \mathbf{u}}{\|\mathbf{u}\|^2} \mathbf{u}$}
+\EndFor
+
+\For{$i \gets 1$ to $n$}
+    \State $\mathbf{e}_i \gets \frac{\mathbf{u}_i}{\|\mathbf{u}_i\|}$
+\EndFor
+
+\Ensure Orthonormal set $\{\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\}$
+
+\end{algorithmic}
+\end{algorithm}
+
+
+\subsection{Example}
+
+We take an example to clarify things:
+
+Consider the set of basis vectors: 
+\[ \mathbf{v}_1 = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}, \]
+\[ \mathbf{v}_2 = \begin{bmatrix} 1 \\ -1 \\ 1 \end{bmatrix}, \]
+\[ \mathbf{v}_3 = \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix}. \]
+
+\textbf{Gram-Schmidt Orthogonalization:}
+
+1. Initialization:
+   \[ \mathbf{u}_1 = \mathbf{v}_1 = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} \]
+
+2. Projection and Subtraction:
+
+   For $\mathbf{u}_2$:
+   \[
+   \begin{aligned}
+   \text{proj}(\mathbf{u}_1, \mathbf{v}_2) &= \frac{\mathbf{v}_2 \cdot \mathbf{u}_1}{\|\mathbf{u}_1\|^2} \mathbf{u}_1 \\
+   &= \frac{\begin{bmatrix} 1 & -1 & 1 \end{bmatrix} \cdot \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}}{\|\begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}\|^2} \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} \\
+   &= \frac{1}{2} \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}
+   \end{aligned}
+   \]
+
+   \[
+   \begin{aligned}
+   \mathbf{u}_2 &= \mathbf{v}_2 - \text{proj}(\mathbf{u}_1, \mathbf{v}_2) \\
+   &= \begin{bmatrix} 1 \\ -1 \\ 1 \end{bmatrix} - \frac{1}{2} \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} \\
+   &= \frac{1}{2} \begin{bmatrix} 1 \\ -3 \\ 2 \end{bmatrix}
+   \end{aligned}
+   \]
+
+   For $\mathbf{u}_3$:
+   \[
+   \begin{aligned}
+   \text{proj}(\mathbf{u}_1, \mathbf{v}_3) &= \frac{\mathbf{v}_3 \cdot \mathbf{u}_1}{\|\mathbf{u}_1\|^2} \mathbf{u}_1 \\
+   &= \frac{\begin{bmatrix} 2 & 1 & 1 \end{bmatrix} \cdot \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}}{\|\begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}\|^2} \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} \\
+   &= \frac{3}{2} \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}
+   \end{aligned}
+   \]
+
+   \[
+   \begin{aligned}
+   \text{proj}(\mathbf{u}_2, \mathbf{v}_3) &= \frac{\mathbf{v}_3 \cdot \mathbf{u}_2}{\|\mathbf{u}_2\|^2} \mathbf{u}_2 \\
+   &= \frac{\begin{bmatrix} 2 & 1 & 1 \end{bmatrix} \cdot \frac{1}{2} \begin{bmatrix} 1 \\ -3 \\ 2 \end{bmatrix}}{\left\|\frac{1}{2} \begin{bmatrix} 1 \\ -3 \\ 2 \end{bmatrix}\right\|^2} \frac{1}{2} \begin{bmatrix} 1 \\ -3 \\ 2 \end{bmatrix} \\
+   &= \frac{3}{2} \begin{bmatrix} 1 \\ -3 \\ 2 \end{bmatrix}
+   \end{aligned}
+   \]
+
+   \[
+   \begin{aligned}
+   \mathbf{u}_3 &= \mathbf{v}_3 - \text{proj}(\mathbf{u}_1, \mathbf{v}_3) - \text{proj}(\mathbf{u}_2, \mathbf{v}_3) \\
+   &= \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix} - \frac{3}{2} \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} - \frac{3}{2} \begin{bmatrix} 1 \\ -3 \\ 2 \end{bmatrix} \\
+   &= \begin{bmatrix} 0 \\ 2 \\ -1 \end{bmatrix}
+   \end{aligned}
+   \]
+
+3. Normalization:
+
+   \[
+   \begin{aligned}
+   \mathbf{e}_1 &= \frac{\mathbf{u}_1}{\|\mathbf{u}_1\|} = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}
+   \end{aligned}
+   \]
+
+   \[
+   \begin{aligned}
+   \mathbf{e}_2 &= \frac{\mathbf{u}_2}{\|\mathbf{u}_2\|} = \frac{1}{\sqrt{6}} \begin{bmatrix} 1 \\ -3 \\ 2 \end{bmatrix}
+   \end{aligned}
+   \]
+
+   \[
+   \begin{aligned}
+   \mathbf{e}_3 &= \frac{\mathbf{u}_3}{\|\mathbf{u}_3\|} = \frac{1}{\sqrt{5}} \begin{bmatrix} 0 \\ 2 \\ -1 \end{bmatrix}
+   \end{aligned}
+   \]
+
+The resulting orthonormal set is:
+\[ \{\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3\} = \left\{
+\begin{bmatrix}
+\frac{1}{\sqrt{2}} \\[1ex]
+\frac{1}{\sqrt{2}} \\[1ex]
+0
+\end{bmatrix},
+\begin{bmatrix}
+\frac{1}{\sqrt{6}} \\[1ex]
+-\frac{3}{\sqrt{6}} \\[1ex]
+\frac{2}{\sqrt{6}}
+\end{bmatrix},
+\begin{bmatrix}
+0 \\[1ex]
+\frac{2}{\sqrt{5}} \\[1ex]
+-\frac{1}{\sqrt{5}}
+\end{bmatrix}
+\right\}
+\]
+
+These orthonormal vectors span the same subspace as the original basis vectors and are mutually orthogonal.
+
+\section{Modified Gram-Schmidt Procedure}
+
+The normal GS procedure is not numerically stable because it keeps on suffering from loss of orthognality in each iterations. 
+
+Here are a few reasons why Gram-Schmidt is not numerically stable:
+
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Orthogonality Loss:} In the projection step, subtracting a small component from a vector may result in a vector that is not exactly orthogonal to the previously processed vectors. Over many iterations, this loss of orthogonality can accumulate, leading to a set of vectors that are no longer orthogonal.
+    
+    \item \textbf{Normalization Issues:} During the normalization step, dividing by the norm of a vector can amplify numerical errors, especially when dealing with vectors of very small or very large magnitudes. This can lead to inaccuracies in the normalized vectors.
+    
+    \item \textbf{Ill-Conditioned Basis:} If the original set of vectors is ill-conditioned (nearly linearly dependent or close to being linearly dependent), the Gram-Schmidt process can magnify the impact of numerical errors.
+    
+    \item \textbf{Sensitivity to Vector Order:} The Gram-Schmidt process is sensitive to the order in which the vectors are processed. Reordering the vectors can result in different orthogonalization outcomes.
+\end{enumerate}
+
+
+
+\textbf{So it is necessary for us to come up with modified algorithms to handle these issues. One of these modified algorithms is Modified Gram Schmidt procedure(MGS)}
+
+\subsection{Procedure}
+
+We define: $\text{proj}_u(v) = \frac{\langle v, u \rangle}{\langle u, u \rangle}u$.
+
+As mentioned, Gram-Schmidt is numerically unstable:
+\[
+u_k = v_k - \text{proj}_{u_1}(v_k) - \text{proj}_{u_2}(v_k) - \ldots - \text{proj}_{u_{k-1}}(v_k),
+\]
+
+However, it can be stabilized with a small modification:
+\[
+u^{(1)}_k = v_k - \text{proj}_{u_1}(v_k),
+\]
+\[
+u^{(2)}_k = u^{(1)}_k - \text{proj}_{u_2}(u^{(1)}_k),
+\]
+\[
+\ldots
+\]
+\[
+u^{(k-2)}_k = u^{(k-3)}_k - \text{proj}_{u_{k-2}}(u^{(k-3)}_k),
+\]
+\[
+u^{(k-1)}_k = u^{(k-2)}_k - \text{proj}_{u_{k-1}}(u^{(k-2)}_k).
+\]
+
+
+\begin{outline}
+    In CGS, we take each vector, one at a time, and make it
+orthogonal to all previous vectors. In MGS, we take each
+vector, and modify all forthcoming vectors to be
+orthogonal to it.
+\end{outline}
+
+
+
+\subsection{Condensed Algorithm}
+
+\begin{algorithm}
+\caption{Modified Gram-Schmidt}
+\begin{algorithmic}[1]
+    \For{$i = 1$ \textbf{to} $n$}
+        \State $v_i = a_i$
+    \EndFor
+    \For{$i = 1$ \textbf{to} $n$}
+        \State $r_{ii} = |v_i|^2$
+        \State $q_i = \frac{v_i}{r_{ii}}$
+        \For{$j = i + 1$ \textbf{to} $n$}
+            \State $r_{ij} = q_i^* v_j$
+            \State $v_j = v_j - r_{ij} q_i$
+        \EndFor
+    \EndFor
+\end{algorithmic}
+\end{algorithm}
+
+

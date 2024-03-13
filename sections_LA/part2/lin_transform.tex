@@ -1,0 +1,128 @@
+\section{Linear Transformations}
+
+The main point of making vector spaces is addressing the word problems we saw earlier. Now, there might be different vector spaces. But, we might investigate the equivalence of such different vector spaces. Because under the hood, we care about solving our variables, which often involves transforming these into new variables that are easier to tackle and solve. This is the concept of linear transformations that joins two vector spaces together. Expression one is some sort of transformed version of the other. 
+
+\begin{outline}
+    If $\mathbb{V}, \mathbb{W}$ are two vector spaces, then a linear transformation between these two is defined as a function $T: \mathbb{V} \to \mathbb{W}$ such as 
+    \begin{enumerate}
+        \item $T(av)=aT(v) \forall a\in \mathbb{F}, v\in \mathbb{V}$
+        \item $T(v+W)=T(v)+T(w) \forall v,w \in \mathbb{V}$
+    \end{enumerate}
+\end{outline}
+
+From this definition, two things are clear to us:
+the set $T(V)$ is a subset of $\mathbb{W}$ and T is linearly separable, i.e. $T(\sum_{i}c_ix_i)=\sum_i c_i T(x_i)$ which can be proved easily by the help of induction.
+
+\subsection{Examples}
+
+\begin{enumerate}
+    \item Let us say that there are two vector spaces, $\mathbb{V}=\mathbb{R}^n, \mathbb{W}=\mathbb{R}^m$, then we can create an $m \times n$ matrix that takes vectors from $\mathbb{V}\to \mathbb{W}$, such that $T(x)=Ax$, meaning determination of the components of T(x) using usual matrix multiplication. $T(x)_i = \sum_j A_{ij}x_j$. This is clearly a linear transformation, and in general, the linear transformation is represented as a matrix. 
+    \item The tansformation $T(x)=ax+b$ is NOT a linear transformation.
+    \item The transformation $T(f)=\int_{0}^{1}f(x)dx$ is a linear transformation. 
+    \end{enumerate}
+
+\subsection{More properties of Linear Maps}
+
+It is interesting to notice that Linear transformation forms a vector space. Because, If 
+$T, S: \mathbb{V} \to \mathbb{W}, a\in \mathbb{F}$ is linear, so is, $T+S$ and $aT$.
+
+Moreover, Let us there exist three vector spaces such as $\mathbb{V, W, X}$ and $T: \mathbb{V} \to \mathbb{W}, S: \mathbb{W} \to \mathbb{X}$ represent linear transformations, then $S \circ T: \mathybb{V} \to \mathbb{X}$ is also a linear map. Associativity and distributivity between linear maps can also be proved, making these a perfect candidate for forming a vector space. 
+
+
+\subsection{Linear Transformations as Matrices}
+
+As we have seen, linear operators are nothing but matrices that transform a vector into a new vector. But what is the significance of the matrix elements of the Linear transformation? What does it mean?
+
+\begin{outline}
+    The general intuitive view that should be adopted is that each column of the matrix represents the transformation of each basis represented as components along the new bases. 
+\end{outline}
+
+For example, if we take the case of the vector space spanned by polynomials having a degree equal to or lesser than 3. Then what does the differentiation operator look like?
+
+The basis for the earlier vector space is $\{1,x,x^2\}$, so it is the basis for the new, transformed vector space. 
+
+We see what the action of this linear transformation is on each of the basis elements.
+
+$$T(1)=0= 0.1 + 0.x + 0.x^2$$
+$$T(x)=1= 1.1 + 0.x + 0.x^2$$
+$$T(x^2)=2x= 0.1 + 2.x+0.x^2$$
+
+Now we have not only seen the actions of the linear transformation on the basis, but we have also decomposed the result into components along the basis for the new vector space. 
+
+
+The linear transformation will look like this:
+
+$$T=\begin{pmatrix}
+    0 & 1 & 0\\
+    0 & 0 & 2\\
+    0 & 0 & 0
+\end{pmatrix}
+$$
+
+Now that we have asserted that linear transformations can be represented by matrices, we need to know some matrix mechanics. 
+
+\subsubsection{Matrix Properties}
+
+\begin{enumerate}
+    \item \textbf{Addition of Matrices}: If we have two matrices, A and B, and add these to get C, then we have:
+    $$C_{ij}=A_{ij}+B_{ij}$$
+    \item \textbf{Matrix Multiplication}
+    If we have two matrices representing two linear transformations, i.e., $T: U\to W, S: W \to Z$, and $A=T \circ S: U \to Z$, then the elements of the composite matrix(that is, a multiplication of the individual matrices,) are represented by the normal matrix multiplication. $A_{ij}=\sum_kT_{ik}S_{kj}$
+    \item \textbf{Commutativity of Matrices}: (AB)C=A(BC)
+    \item \textbf{Distrbutivity of Matrices}: A(B+C)=AB + AC
+\end{enumerate}
+
+\subsubsection{Nullspace or Kernel of a matrix}
+
+If there exists a linear transformation T which acts upon a vector $\vec{v}$ yielding a zero vector, then the space spanned by all such vectors is called the Null space of the linear transformation. It is denoted by \textbf{N(T)}
+
+Some important properties regarding the null space of a linear transformation T:
+
+\begin{enumerate}
+    \item A linear transformation T is one-one if and only if $N(T)=\vec{0}$. It can be proved by contradiction.
+    \item The dimension of the Null space of the transformation T is called the Nullity of the linear transformation. 
+    \item The Nullity basically represents the number \textbf{free parameters} in the case of solving for linear equations. It represents the \textbf{failure of injectivity} of T
+    \item The dimension of the image of the T is called the rank of T. It measures the \textbf{failure of surjectivity} of T.
+    \item \textbf{Rank-Nullity Theorem} For a linear transformation $T:V\to W$, Nullity and Rank adds up to \textbf{dim(V)}
+\end{enumerate}
+
+\subsubsection{Rank-Nullity Theorem}
+
+It can be proved by showing the fact that the basis outside the null space of the linear transformation forms a basis for the range of that linear transformation.
+
+If we consider a linear transformation $T : V \to W$
+and \textbf{dim(V)=n} Let us assume that \textbf{dim(N(T))=k <n}. So, we define the basis $e_i, i=1,...k$ for the Null-space of T. We extend it to the basis $e_i, i=1, ...n$ for the whole vector space V.
+
+Now, we define $f_i=e_{i+k} , i = 1, 2, ...n-k$
+It suffices to prove that these extra bases $\{f_i\}$ is a basis for $R(T)$.
+
+\textbf{First we prove linear independence:}
+
+Suppose $$\sum_i c_i f_i= 0 \implies T(\sum_i c_i f_i)=T(0)=0 \implies \sum_i c_i f_i \in N(T)$$
+
+This essentially means that $\sum_i c_i f_i$ is a vector of the null space of T, and it can be represented as a linear combination of the basis $e_i , i=1, 2,...k$
+
+$$\sum_i c_i f_i = \sum_id_i e_i$$
+
+By linear independence of the overall basis, $e_i , i=,1,2,...n$ we can assert that $c_i=d_i \forall i$
+
+
+\textbf{We now prove the spanning property}
+
+Let us take an arbitrary vector in V. 
+$V=\sum_i c_i e_i$
+
+$$T(V)= T (\sum_i^n c_i e_i) = T (\sum_i^k c_i e_i + \sum_k^n c_i e_i)$$
+
+The first term is just a vector in the Null space of T. So, we can write:
+
+$$T(V) = T(\sum_i^k c_i e_i) + T(\sum_{k}^n c_i e_i) = T(\sum_{k}^n c_i e_i)$$
+
+proving the spanning property. 
+
+
+\begin{outline}
+This shows that if the nullity of the matrix T is k then the rank would be n-k, adding up to n, which is dim(V)
+\end{outline}
+
+ 

@@ -1,0 +1,176 @@
+\section{Determinants}
+
+We now motivate the idea of a determinant. Why is it important? Let us say we have two linear equations. 
+
+$$ax +by = e, cx +dy = f$$
+
+we can easily solve these to get the following solutions:
+
+$$(ad - bc)x = ed - bf , (ad - bc)y = af - ce$$
+
+Now say ad-bc is zero. Then if (ed-bf), (af-ce) are not zero, then no solution is possible. But, if (ed-bf), (af-ce) are zero then there are infinite number of solutions. 
+
+\subsection{It can be seen Geometrically}
+
+Solving the above linear system is equivalent to nding the
+intersection set of two lines. Either they intersect at a single point or they are parallel and
+do not intersect or they intersect in a line or they are all of $\mathbb{R}^2$.
+
+If these two line intersect and make parallelogram together, then the area is not going to be zero until and unless the the lines are parallel to each other. \textbf{So, this area represents the area. It represents the volume in the case of three vectors, i.e. a scalar triple product.}
+
+\begin{outline}
+    The deteminant of a nxn matrix represents the signed volume of the parallelogram present between the n vectors in a n dimensional space.  
+\end{outline}
+
+\subsection{properties that we expect from the determinant}
+
+The determinant obeys the following properties:
+
+\begin{enumerate}
+    \item Scale with each vector,
+    \item Be 1 for the standard basis,
+    \item Vanish if two vectors are equal,
+    \item Be \textbf{multilinear}
+    \item Be alternating.
+\end{enumerate}
+
+\begin{outline}
+    A little digression to show you what is multilinear function.
+    A function $f: V_1 \times V_2 \times \ldots \times V_n \rightarrow \mathbb{F}$ is said to be multilinear if, for each fixed vector in all but one argument, the function is linear in that remaining argument. In a more precise manner, a function $f$ is multilinear if it satisfies the following conditions for all vectors $v_i$ in the respective vector spaces $V_i$ and scalars $\alpha$ in the field $\mathbb{F}$:
+
+\begin{enumerate}
+    \item \textbf{Linearity in each variable separately:}
+    \begin{align*}
+        &f(v_1 + \alpha v_1', v_2, \ldots, v_n) = f(v_1, v_2, \ldots, v_n) + \alpha f(v_1', v_2, \ldos, v_n) \\
+        &f(v_1, v_2 + \alpha v_2', \ldots, v_n) = f(v_1, v_2, \ldos, v_n) + \alpha f(v_1, v_2', \ldots, v_n) \\
+        &\vdots \\
+        &f(v_1, v_2, \ldots, v_n + \alpha v_n') = f(v_1, v_2, \ldos, v_n) + \alpha f(v_1, v_2, \ldots, v_n')
+    \end{align*}
+    
+    \item \textbf{Homogeneity in each variable:}
+    \begin{align*}
+        &f(\alpha v_1, v_2, \ldos, v_n) = \alpha f(v_1, v_2, \ldos, v_n) \\
+        &f(v_1, \alpha v_2, \ldos, v_n) = \alpha f(v_1, v_2, \ldos, v_n) \\
+        &\vdots \\
+        &f(v_1, v_2, \ldos, \alpha v_n) = \alpha f(v_1, v_2, \ldos, v_n)
+    \end{align*}
+\end{enumerate}
+
+Multilinear functions are commonly encountered in linear algebra, tensor analysis, and other areas of mathematics and physics.
+
+\end{outline}
+
+\subsection{Arriving at a more formal definition}
+
+\begin{outline}
+    Let $v_1, v_2, \ldots, v_n$ be an ordered collection of $n$ vectors in $\mathbb{F}^n$. A function $F$ that takes this tuple to $F$ is called a determinant function if it satisfies the following axioms:
+
+\begin{enumerate}
+    \item \textbf{Scaling:} If $v_k$ is replaced with $t v_k$ (and the other $v_i$'s are left intact), then $F$ gets scaled by $t$.
+    
+    \item \textbf{Additivity:}
+    \[
+    F(\ldots, v_k + w, \ldots) = F(\ldots, v_k, \ldots) + F(\ldots, w, \ldots).
+    \]
+    A function that satisfies the first two properties is said to be multilinear.
+    
+    \item \textbf{Alternating:} $F(\ldots, v, \ldots, v, \ldots) = 0$.
+    
+    \item \textbf{Normalization:} $F(e_1, \ldots, e_n) = 1$.
+\end{enumerate}
+
+\end{outline}
+
+Other properties of alternating multilinear functions follows: 
+
+\begin{itemize}
+    \item \textbf{Linearity with more than one vector:}
+\[
+F(\ldots, v_k + c_1w_1 + c_2w_2 + \ldots + c_mw_m, \ldots) = F(\ldots, v_k, \ldots) + c_1F(\ldots, w_1, \ldots) + \ldots \quad (\text{HW}).
+\]
+
+\item \textbf{It vanishes if some vector is 0:}
+\[
+F(\ldots, 0, \ldots) = 0F(\ldots, 0, \ldots) = 0.
+\]
+
+\item \textbf{(Antisymmetry) If $v_i \neq v_j$, $F$ changes sign:}
+\[
+\begin{aligned}
+    &F(\ldots, v_i + v_j, \ldots, v_i + v_j, \ldots) = 0, \\
+    &F(\ldots, v_i, \ldots, v_i + v_j, \ldots) = -F(\ldots, v_j, \ldots, v_i, \ldots) + 0.
+\end{aligned}
+\]
+
+\item 
+\textbf{If the vectors are linearly dependent, then $F$ vanishes:}
+Suppose $\sum_i c_i v_i = 0$ with $c_k \neq 0$. Then
+\[
+F(\ldots, c_k v_k, \ldots) = \frac{1}{c_k} F(\ldots, \sum_{i \neq k} (-c_i) v_i, \ldots) = 0.
+\]
+
+\end{itemize}
+
+
+Also, we can prove the \textbf{Uniqueness theorem that says}
+
+\begin{outline}
+    An alternating multilinear function $F: V^n \to \mathbb{F}$ (where $V$ is a vector space over the field $\mathbb{F}$) is uniquely determined by its values on the basis vectors of $V$. More formally:
+
+Suppose $F$ and $G$ are two alternating multilinear functions from $V^n$ to $\mathbb{F}$ such that
+\[F(v_1, v_2, \ldots, v_n) = G(v_1, v_2, \ldots, v_n)\]
+for all choices of vectors $v_1, v_2, \ldots, v_n$ in $V$. Then, $F = G$.
+\end{outline}
+
+This clearly shows the \textbf{Uniqueness of the determinant function.}
+
+Now that we know the properties of a determinant function, how do we guess the determinant of a nxn matrix and prove that this is the determinant function? We take the help of recursion. 
+
+Note that $\det(v_1, \ldots, v_n) = \det\left(\sum_{j} c_{j1}e_j, v_2, \ldots, v_n\right) = \sum_{j} c_{j1}\det(e_j, v_2, \ldots, v_n)$.
+
+\textbf{Property:} If we define $n - 1$-dimensional new columns/vectors $\tilde{v}_{2,j}, \tilde{v}_{3,j}, \ldots$ by simply deleting the $e_j$ components from $v_2, v_3, \ldots$ and replacing $e_{j+1}$ with $e_j$, $e_{j+2}$ with $e_{j+1}$, etc., then
+\[
+\det(v_1, \ldots) = \sum_j c_{j1}(-1)^{j+1} \det(\tilde{v}_{2,j}, \tilde{v}_{3,j}, \ldots).
+\]
+Such an $(n - 1) \times (n - 1)$ determinant is called a minor.
+
+This is the recursion step we take to make the determinant. A clever guess along this lines gives us the result: 
+
+\boxed{$$\det(v_1, \ldots, v_n) = \sum_{j} c_{1j}(-1)^{j+1}\det{A_{1j}}$$}
+
+, where the minor $A_{1j}$ is obtained by deleting the first row and the $j$-th column.
+
+This can be proved to be a determinant function by the axioms and it opens up the road for recursive calculation of determinants.
+
+
+\textbf{Other properties of Determinants are}
+
+1. Determinant is conserved under transposing a matrix.
+
+2. The determinant of the inverse of a matrix is reciprocal of the determinant of the original matrix.
+
+3. The determinant of the product of two matrices is the product of the determinants of the individual matrices. 
+
+
+\subsection{Change in Basis}
+Now we ask an important question. What if we change the basis and represent the same vector space with different bases? Does the determinant change? If yes, how do we even define a determinant for a vector space if it is anyways dependent on the basis? We look into the intricacies of basis change to see its effect on linear transformations and other functions such as determinants. 
+
+
+Let us say that we start from the ordered basis $e_1,e_2, e_3, .....e_n$ and then transformed this basis to $e_1', e_2', e_3', ..... e_n'$ by the formula $e_i' = \sum_j P_{ij}e_j$ 
+
+
+Then the linear transformation becomes: 
+
+$$T(e_i')=\sum_j P_{ij} T(e_j) = \sum_{j,k} P_{ij}T_{jk}e_k$$
+
+But we see that $e_k = \sum_m [P^{-1}]_{km}e_m'$ because it is the inverse transformation, (P must be invertible, otherwise there will non trivial relation ships between the new basis reducing the degree of the vector space.)
+
+Putting all these we get:
+
+$$T(e')=e'[P^{-1}][T][P]  \implies T'=P^{-1}TP$$
+
+Any two matrices related like this are called similar matrices. \textbf{You can clearly see that $\det(T)=\det(T')$, by the product rule.}
+
+
+
+

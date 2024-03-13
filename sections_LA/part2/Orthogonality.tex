@@ -1,0 +1,149 @@
+\section{Orthogonality}
+
+Inner product, in one sense, can be thought of as representing the projection of one vector on the other. But what if this inner product is zero? The projection of one vector on the other becomes zero. 
+
+
+\subsection{Definition}
+
+If two vectors $v,w \in \mathbb{V}$ are such that the inner product $\langle v,w \rangle =0$, then these vectors are called orthogonal. A subset $S \subseteq V
+$ is called orthonormal if every two distinct elements of this set are orthonormal. 
+
+
+\subsection{Properties}
+
+Clearly, the fundamental properties of orthogonal vectors are:
+
+\begin{enumerate}
+    \item $\langle v,w \rangle =0$
+    \item Vectors in an orthonormal set are always linearly independent. 
+    \item For a vector space of dimension n, a set of n orthonormal vectors form a basis. 
+\end{enumerate}
+
+\subsection{Examples}
+Some examples of orthonormal vectors are:
+
+\begin{enumerate}
+    \item Any usual vector in the space $\mathbb{R}^n$, $\mathbb{C}^n$ where the usual dot product gives zero.
+    \item There are interesting functions under the integration dot product that can be orthogonal, such as the Fourier basis, $e^{ikx}$, trigonometric functions $\cos nx,\sin nx$, Legendre Polynomials, etc... To make these orthonormal, we need to normalize these vectors, which is trivial. 
+\end{enumerate}
+
+\subsection{More properties}
+
+Now, we involve ourselves in looking at how vectors in a vector space are represented on an orthonormal basis. Let us say we have vector space V that has a dimension n, and $e_1, e_2, e_3,.... e_n$ are the orthonormal basis. 
+
+\begin{itemize}
+    \item If we have a vector $v=\sum_k c_k e_k$, then $c_k$ is represented by, $c_k=\langle v, e_K \rangle$. Then the vector can be represented as $v=\sum_k \langle v, e_K \rangle e_k$
+    \item we can also simplify inner product between two vectors $\langle v ,w \rangle = \sum_k \langle x,e_k\rangle \overline{\langle y, e_k \rangle}$
+    \item This property simplifies the calculation of the norm of a vector also, $\langle v,v \rangle = \sum_{k} |\langle x,e_k\rangle|^2$
+\end{itemize}
+
+
+\subsection{Grahm-Schmidt Procedure}
+
+Now, we have seen that working on an orthonormal basis makes life a lot easier. So, if we are given a non-orthonormal basis, how do we convert it to an orthonormal basis? 
+
+Our intuition says that we take the first vector and delete the parallel component to the first vector from the other vectors. This intuition can be generalized into the Grahm-Schmidt procedure. The formulation of the definition of the existence of an orthonormal basis is given below. \textbf{This is not the definition of the Grahm-Schmidt procedure. The algorithm is a way to find the orthogonal basis.}
+
+\begin{outline}
+    Let $x_1, . . .$ be a finite or infinite sequence of vectors in
+$(V,\langle,\rangle)$. Let $L(x_1, . . . , x_k )$ be the span of the first k elements.
+Then there is another collection $y_1, . . . ,$ in V such that
+
+\begin{itemize}
+    \item $y_k$ is orthogonal to every element in $L(y_1, . . . , y_{k−1})$
+    \item $L(y_1, . . . , y_k ) = L(x_1, . . . , x_k )$
+    \item The sequence $y_1, . . .$ satisfying the above properties is unique upto scaling factors
+\end{itemize}
+\end{outline}
+
+\subsubsection{The algorithm}
+
+So, first, let us take the basis of the vectors, that are not orthonormal with each other. Step by step, let us construct the orthonormal basis from this. Let us say that the initial basis is $\{x_1, x_2, x_3,...\}$ so, we first choose $y_1=x_1$, then we choose $y_2=x_1-ax_2$
+and then we find a such that the inner product of $y_2$ with $x_1$ becomes zero.  I.e., in short, we take vectors progressively and tactfully subtract from them whatever it had of the components parallel to the previous basis. 
+
+$\langle y_2, x_1 \rangle =0 \implies \langle \langle x_1, x_1 \rangle -a \langle x_2, x_1 \rangle \implies a =\frac{\langle x_1, x_1 \rangle}{\langle x_2, x_1\rangle}$
+
+similarly we define $y_3= x_3 -a_1y_1 -q_2y_2$
+and find the $a_1, a_2$ from the inner product. 
+
+$$y_k = x_k -\sum_i a_i y_i$$, if $y_i=0$, so is $a_i$, otherwise $a_i =\frac{\langle x_{k+1}, y_i\rangle}{\langle y_i, y_i \rangle}$
+
+It can be easily shown that the GS procedure produces vectors that satisfy the conditions. If the initial set $x_1, .... x_n$ is linearly independent, then none of the $y_i$'s are zero.
+
+
+\subsection{Examples of Orthonormal basis obtained by GS procedure}
+
+One of the chief examples of orthogonalization of the basis $1, x, x^2, x^3, x^4....$ is given by the Legendre Polynomials.
+
+$$P_n=\frac{1}{2^n n!} \frac{d^n}{dt^n}(t^2-1)^n$$
+
+\subsection{Orthogonal Complement}
+
+Let us assume that there is a vector space V and a subset(not necessarily a subspace) is S. We take a vector $v \in V$ such that it is orthogonal to every element of S. We take all such v's and make a set, which is called $S^\perp$ . This is called the orthogonal complement of S. An interesting property of this complement is that it is a subspace irrespective of the fact whether S is a subspace or not. 
+
+Some examples might be :
+
+\begin{enumerate}
+    \item The orthogonal subspace of the vectors $(1,2), (1,3)$ in $\mathbb{R}^2$ is the zero vector (0,0.)
+    \item Tghe orthogonal complement of a line in 3D space will be given by a plane.
+\end{enumerate}
+
+\subsubsection{Orthogonal Decomposition}
+
+Motivated by this construction, we have a theorem: Let
+$(V,\langle, \rangle)$ be an inner product space and $S \subseteq V$ be a f.d.
+subspace. Then, every element $x \in V$ can be represented
+uniquely as a sum $x = s + s^
+\perp$ where $s \in S$ and $s
+\perp ∈ S^
+\perp$
+
+Moreover $||x||^2 = ||s||^2 + ||s^\perp||^2$
+
+If S is not finite-dimensional, then this result is not true in general.
+.
+
+
+\subsubsection{Approximation by Orthogonal Decomposition}
+
+The notion of orthogonal decomposition helps us to approximate functions given a fixed basis of functions. This is a very famous paradigm in a modern industry where random functions of real life are approximated as a summation of sines and cosines, or maybe with polynomials. 
+
+So, given a function, we find the \textbf{projection} of it on the basis of calculating the respective components. And we also can prove the fact that :
+
+\begin{outline}
+    Let $S \subseteq V$ be a f.d. subspace of an inner product space
+$(V,\langle,\rangle)$ and let $x \in V$. Then if s is the projection of x on S,
+$||x − s||\leq ||x − t||$ for any $t \in S$
+\end{outline}
+
+Thus, clearly, the projection helps us with finding the orthogonal components. We find the projection with our usual method of inner product calculation. 
+
+Given an orthonormal basis $e_i, i=\{1, 2, ,3 ... n\}$ of a n-D vector space. Any function can be approximated as $\tilde{f}_n  = \sum_{k=1}^n \langle f, e_k \rangle e_k$; the more the number of basis, the better the approximation. 
+
+
+\begin{enumerate}
+    \item Let us say we have a sine and cosine basis such as :
+    $$\phi_0(x)=\frac{1}{\sqrt{2\pi}}, \phi_1(x)=\frac{\sin x}{\sqrt{\pi}}, \phi_2(x)=\frac{\cos x}{\sqrt{\pi}}, .... \phi_{2n}(x)$$
+
+    We can clearly approximate any functions with this basis as $\tilde{f}_n  = \sum_{k=1}^n \langle f, e_k \rangle e_k$ where $\langle f, e_k \rangle=\int_0^{2\pi} fe_k dx$, called the Fourier components of the functions. 
+
+    \item We can do the same with a polynomial basis; we start with the familiar basis $1, x, x^2, x^3....$ and apply the GS procedure to obtain the Legendre polynomial orthonormal basis. Then  we take the inner product according to the integral law with appropriate limits and use the same formula: $\tilde{f}_n = \sum_{k=1}^n \langle f, e_k \rangle e_k$
+\end{enumerate}
+
+\subsubsection{Least Square Fit}
+
+Surprisingly, this can also be extended to finding the least square fit. 
+
+For example, we hypothesize a linear relation between the dependent and independent variables. Now we want to see the fit that minimizes the least square error.
+
+So, we have a set of points $x_i, y_i$, and we project this larger space into a smaller space. Let us say X. Now, we subtract out the projection from Y, the larger space to get $Y-\beta X$, where $\beta$ is some multiplicative vector. We claim that this must be orthogonal to the reduced space X. 
+So we claim:
+
+$$(Y-X\beta)^TX=0$$
+
+These are called the normal equations. 
+
+$$X^T(Y-\beta X) \implies X^TY = X^T\beta X $$
+$$\beta = \frac{X^T}{X^TX}Y$$
+
+

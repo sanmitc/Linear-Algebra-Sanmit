@@ -1,0 +1,225 @@
+\section{Eigenvectors of A matrix}
+
+\subsection{Definition:} 
+
+\begin{outline}
+Let $T : V \rightarrow V$ be a linear map, and $V$ be a vector space. A non-zero vector $v$ is said to be an eigenvector with eigenvalue $\lambda \in \mathbb{F}$ if $Tv = \lambda v$. 
+\end{outline}
+
+
+An eigenvector by definition is required to NOT be the zero vector!
+
+\textbf{Theorem:} If $V$ is a finite-dimensional vector space, and $T : V \rightarrow V$ is linear, then $[T]$ is diagonal in an ordered basis $e_1, \ldots$ if and only if the basis vectors $e_1, \ldots, e_n$ are eigenvectors with eigenvalues $[T]_{11}, [T]_{22}, \ldots$.
+
+A linear map $T : V \rightarrow V$ is said to be diagonalizable if it has a basis of eigenvectors. Likewise, a square matrix $A$ is said to be diagonalizable if there is an invertible matrix $P$ such that $P^{-1}AP$ is diagonal.
+
+\textbf{What is an Eigenspace?}
+
+Eigenspace: Suppose T(v) = $\lambda$v for a non-zero v then
+T(cv) = cT(v) = $\lambda$(cv) for every c 2 F. Moreover, if
+T(w) = $\lambda$w, then T(v + w) = T(v) + T(w) = $\lambda$(v + w). In
+other words, the set of all eigenvectors corresponding to the
+same eigenvalue and the zero vector forms a subspace
+known as the eigenspace of $\lambda$.
+
+
+\subsection{Examples and Non-examples}
+
+\begin{itemize}
+    \item Let us say that there is a linear operator that is given by T(v)=cv, then every vector in the given vector space is an Eigenvector, and thus the whole space is an Eigenspace.
+    \item Consider the example $T=\begin{pmatrix}
+        0 & 3\\
+        0 & 0\\
+    \end{pmatrix}$ Clearly, the vector $\begin{pmatrix}
+        1 \\ 0\\
+    \end{pmatrix}$ is an Eigenvector with Eigenvalue zero.
+    The Eigenspace is only one-dimensional in this case. So, the matrix is not diagonalizable.
+    \item Rotation via 90 degrees does not have Eigenvectors in a vector space defined over a real field. But with a complex field, it is possible. 
+    \item We can have Eigenvectors even in a continuous basis. $D : V \to V$  given by $D(f ) = f'$
+is a linear map. $D(f)=\lambda f$ precisely when $f'(x) = \lambda f (x)$. As
+we shall prove later, $f (x) = A\exp(\lambda x)$ is the solution.
+\end{itemize}
+
+
+
+\subsection{Characteristic Polynomial}
+
+Let $V$ be a finite-dimensional vector space. Consider a linear transformation $T: V \to V$ with an eigenvector $v$ and eigenvalue $\lambda$. It follows that $(\lambda I - T)v = 0$, where $I: V \to V$ is the identity transformation and $v \neq 0$. Thus, the null space of $(\lambda I - T)$ is non-trivial. Consequently, $\lambda I - T$ is not invertible, leading to $\det(\lambda I - T) = 0$. In other words, if $e_1, \ldots, e_n$ form an ordered basis and $[T]$ is the corresponding matrix representation, then $\det(\lambda[I] - [T]) = 0$.
+
+Conversely, if $\det(\lambda I - T) = 0$, there exists a non-zero vector $v$ such that $Tv = \lambda v$. Therefore, eigenvalues are precisely solutions to the characteristic polynomial $p_T(\lambda) = \det(\lambda I - T) = 0$ in the field $F$.
+
+One can establish, through induction (as a homework exercise), that $p_T(\lambda)$ is a polynomial of degree $n$ with the highest power being $\lambda^n$, and $p_T(0) = \det(0 - T) = (-1)^n \det(T)$. This polynomial is commonly referred to as the characteristic polynomial of $T$.
+
+
+\subsection{Diagonalizability}
+
+A square matrix $A$ is diagonalizable if and only if the following conditions are satisfied:
+
+\begin{enumerate}
+    \item \textbf{Existence of \(n\) Linearly Independent Eigenvectors:}
+    \begin{itemize}
+        \item The matrix $A$ must have $n$ linearly independent eigenvectors, where $n$ is the size of the matrix (the order of the square matrix).
+    \end{itemize}
+
+    \item \textbf{Algebraic Multiplicity Equals Geometric Multiplicity for Each Eigenvalue:}
+    \begin{itemize}
+        \item For each distinct eigenvalue $\lambda$, the algebraic multiplicity (the multiplicity of $\lambda$ as a root of the characteristic polynomial) must be equal to its geometric multiplicity (the dimension of the corresponding eigenspace).
+    \end{itemize}
+
+    \item \textbf{Diagonalizability Condition:}
+    \begin{itemize}
+        \item The matrix $A$ is diagonalizable if and only if it can be expressed as $A = PDP^{-1}$, where $P$ is the matrix whose columns are the linearly independent eigenvectors of $A$, and $D$ is a diagonal matrix containing the corresponding eigenvalues.
+    \end{itemize}
+\end{enumerate}
+
+Mathematically, suppose $\lambda_1, \lambda_2, \ldots, \lambda_k$ are the distinct eigenvalues of $A$ with algebraic multiplicities $m_1, m_2, \ldots, m_k$, and $n$ is the order of the matrix. Then, $A$ is diagonalizable if and only if:
+
+
+\begin{align*}
+&\text{1. } \sum_{i=1}^{k} m_i = n \quad \text{(Total algebraic multiplicity equals matrix size)} \\
+&\text{2. } \text{dim}(E_{\lambda_i}) = m_i \quad \text{(Geometric multiplicity for each eigenvalue)}
+\end{align*}
+
+
+Here, $E_{\lambda_i}$ is the eigenspace corresponding to the eigenvalue $\lambda_i$.
+
+\subsection{Checking SImilarity}
+
+Given two matrices A and B, how do we know whether these are similar to each other or not?
+
+It is not a straightforward question to answer but good indicators are: 
+
+\begin{itemize}
+    \item $det(\lambda I - A) = det(\lambda P-1P - P-1BP) = det(\lambda I - B)$.
+So, their eigenvalues must be equal.
+\item det(A) = det(B)
+\item From analyzing the characteristic polynomial one can  find another condition for the similarity between two matrices and that is, Tr(A)=Tr(B)
+\end{itemize}
+
+So, given two matrices, how to proceed find the similarity?
+
+To determine if two matrices $A$ and $B$ are similar, follow these steps:
+
+\begin{enumerate}
+    \item \textbf{Compute Eigenvalues:}
+    \begin{itemize}
+        \item Find the eigenvalues of both matrices $A$ and $B$. If the eigenvalues match, it is a good indicator.
+    \end{itemize}
+
+    \item \textbf{Compute Eigenvectors:}
+    \begin{itemize}
+        \item For each eigenvalue $\lambda$, find the corresponding eigenvectors. If eigenvectors corresponding to the same eigenvalue are proportional, it suggests similarity.
+    \end{itemize}
+
+    \item \textbf{Build Matrix $P$:}
+    \begin{itemize}
+        \item Arrange the eigenvectors of $A$ as columns in a matrix $P$. The order should match the order of the eigenvalues.
+    \end{itemize}
+
+    \item \textbf{Check Invertibility:}
+    \begin{itemize}
+        \item Verify if $P$ is invertible. If the eigenvectors form a linearly independent set, $P$ is invertible, suggesting the existence of a similarity transformation.
+    \end{itemize}
+
+    \item \textbf{Verify Similarity:}
+    \begin{itemize}
+        \item Check if $B = P^{-1}AP$. If this equation holds, then $A$ and $B$ are similar.
+    \end{itemize}
+\end{enumerate}
+
+It is crucial to note that even if the eigenvalues match, the matrices may not be similar. The key is checking the eigenvectors and ensuring they form a linearly independent set.
+
+\subsection{Hermitian Maps}
+
+Hermitian linear maps are a very important subclass of linear maps that have special properties that facilitate a lot more advantages and these are heavily used in physics and other fields of science. So, what is a Hermitian linear map? It arises from the question of whether the Eigenvalues of a complex matrix can be real. 
+
+\subsubsection{Definition}
+
+Let $V$ be a complex inner product space, and let $T: V \to V$ be a linear transformation.
+
+If $v$ is an eigenvector of $T$ with eigenvalue $\lambda$, then $\lambda = \frac{h(Tv, v)}{h(v, v)}$ (by an easy calculation).
+
+By Hermitian symmetry, $ \overline{\lambda} = \frac{h(v, Tv)}{h(v, v)}$. Thus, $\lambda$ is real if and only if $h(v, Tv) = h(Tv, v)$ for that eigenvector. Likewise, it is purely imaginary if and only if $h(v, Tv) = -h(Tv, v)$.
+
+Definition: $T: V \to V$ is called Hermitian if $h(Tv, w) = h(v, Tw)$ for every $v, w \in V$. It is called skew-Hermitian if $h(Tv, w) = -h(v, Tw)$ for every $v, w \in V$. If $V$ is a real vector space, $T$ is called symmetric or skew-symmetric instead.
+
+All eigenvalues of Hermitian linear maps are real, whereas they are purely imaginary for skew-Hermitian ones.
+
+\subsubsection{What should the matrix that represents a Hermitian Linear map look like?}
+
+If $A$ is an $n \times n$ complex matrix, consider $T: \mathbb{C}^n \to \mathbb{C}^n$ given by $T(v) = Av$. Assume that $\mathbb{C}^n$ is endowed with the usual dot product. $T$ is Hermitian if and only if
+\[
+h(Tv, w) = (Av)^T \overline{w} = v^T A^T \overline{w} \quad \text{equals} \quad h(v, Tw) = v^T \overline{A} \overline{w}
+\]
+for all $v, w \in \mathbb{C}^n$. Here, $A^T$ denotes the transpose of $A$. If $A^T = \overline{A}$, i.e., $A^T = A$, then $A$ is Hermitian.
+
+Define the adjoint $A^\dagger:= A^T$. So a Hermitian matrix satisfies $A^\dagger = A$, and a skew-Hermitian one satisfies $A^\dagger = -A$.
+
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item Let $V = C^\infty([0; 1];\mathbb{C})$, with $h(f, g) = \int_{0}^{1} f(t)\overline{g(t)} \,dt$, and
+$T: V \to V$ be $T(f) = xf$. Then
+\[
+h(Tf, g) = \int_{0}^{1} xf(x)\overline{g(x)} \,dx = h(f, Tg).
+\]
+
+\item 
+Let $V = C^\infty([0; 1];\mathbb{C})$, with $h(f, g) = \int_{0}^{1} f\overline{g} \,dt$, and
+$T: V \to V$ be $T(f) = \sqrt{-1}\,f'$. Then
+\[
+h(Tf, g) = \int_{0}^{1} \sqrt{-1}\,f'(t)\overline{g(t)} \,dt = \left(\sqrt{-1}\,f(1)\overline{g(1)} - \sqrt{-1}\,f(0)\overline{g(0)} + \int_{0}^{1} f\overline{g'} \,dt\right).
+\] 
+It is not Hermitian in general.It becomes Hermitian if the functional space is reduced to contain only functions that are periodic. 
+\end{itemize}
+
+
+\subsubsection{Spectral Theorem}
+
+It can be shown that in the case of Hermitian/Skew-hermitian matrices defined over a complex inner product space, Eigenvectors corresponding to two distinct eigenvalues are always orthogonal to each other. This concept can be extended to the famous and important theorem known as the \textbf{Spectral Theorem}
+
+\textbf{Proof:}
+
+\textbf{Base Case:} \(n = 1\)
+
+In this case, \(V\) is one-dimensional, and any non-zero vector in \(V\) is an orthonormal basis. Therefore, the statement holds true for \(n = 1\).
+
+\textbf{Inductive Hypothesis:} Assume the statement is true for \(n = k\), where \(k\) is an arbitrary positive integer.
+
+\textbf{Inductive Step:} \(n = k + 1\)
+
+Consider \(V\) to be an \((k+1)\)-dimensional complex inner product space, and \(T: V \rightarrow V\) a Hermitian or skew-Hermitian operator.
+
+By the spectral theorem, there exists an eigenvector \(v_1\) corresponding to an eigenvalue \(\lambda_1\). Without loss of generality, assume \(v_1\) is a unit vector.
+
+Now, consider the subspace \(U = \text{span}(v_1)^\perp\), the orthogonal complement of \(\text{span}(v_1)\). \(U\) is \(k\)-dimensional, and \(T\) restricts to \(U\) as a \(k \times k\) Hermitian or skew-Hermitian operator.
+
+By the inductive hypothesis, there exist \(k\) orthonormal eigenvectors \(v_2, v_3, \ldots, v_{k+1}\) of \(T|_U\) forming an orthonormal basis for \(U\).
+
+Therefore, the set \(\{v_1, v_2, \ldots, v_{k+1}\}\) is an orthonormal set in \(V\). To see that it forms a basis, note that \(\dim(\text{span}(\{v_1, v_2, \ldots, v_{k+1}\})) = k+1\). Since \(V\) is \((k+1)\)-dimensional, this set is indeed a basis.
+
+Thus, by induction, the statement holds for all positive integers \(n\).
+
+This completes the proof of the spectral theorem for Hermitian or skew-Hermitian operators by induction.
+
+
+\subsubsection{Unitary and Orthogonal Matrices}
+
+A matrix or linear map \( U : \mathbb{C}^n \to \mathbb{C}^n \) preserves the usual dot product, i.e., \( hUv, Uw i = hv, wi \), if and only if \( U^T \overline{U} = I \), i.e., \( U^* U = I \), and hence \( UU^* = I \). Preserving the dot products comes in a lot of places like physics. 
+
+\textbf{Definition:} A complex \( n \times n \) matrix \( U \) is said to be unitary if \( U^* U = UU^* = I \), i.e., \( U^{-1} = U^* \). A real matrix \( O \) is said to be orthogonal if \( O^T O = OO^T = I \).
+
+
+Similarly, we can extrapolate this concept to any linear map T that does the same thing, i.e. preserves the inner product. T is unitary if and only if the matrix [T] is unitary on some orthonormal basis.
+
+Also, as we saw the diagonalization of matrices, we have to know that if \(A = A^*\), then \(U^*AU = D\) where \(U\) is a unitary matrix.
+
+Indeed, \(Tv = Av\) has an orthonormal basis of eigenvectors. Consider \(U : \mathbb{C}^n \to \mathbb{C}^n\) taking the usual orthonormal basis to the eigenvector one. \(U\) is a unitary matrix. Hence \(U^*AU = U^{-1}AU = D\).
+
+
+
+
+
+
+

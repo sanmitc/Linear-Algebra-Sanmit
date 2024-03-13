@@ -1,0 +1,45 @@
+\section{Basis and Linear Independence}
+
+We need the notion of spanning and linear independence to build up the basis concept in a vector space. 
+
+\subsection{Linear Independence}
+
+A bunch of vectors are called linearly independent, and these form a set such that no vector in that set can be represented as the linear combination of other vectors in the set. 
+
+In a more mathematical terminology, if we take
+
+$$\sum_kc_ks_k=0$$, where k is the number of vectors in the set. Then each $c_k$ must be zero. 
+
+For example, the two vectors (1,0) and (0,1) are linearly independent. So, are the polynomial bases $(1, x, x^2)$ and the Fourier bases $e^{inx}$
+
+\subsection{Spanning}
+
+A bunch of vectors is said to be spanning a whole space if it forms a set such that every vector in the space can be written a linear combination of the vectors from the set. As we stated before, $L(S)$ is called the span of the vectors in a set $S$, so we will say that the vector in $S$ spans the set $L(S)$.
+
+
+\subsection{Basis}
+
+Now, after defining the notion of linear independence and spanning, we define the basis vectors. Given a vector space, basis vectors of this space are given by any set of linearly independent vectors that span the space. The number of basis vectors in the set is the dimension of the previously mentioned space.
+
+For example, if we talk about $\mathbb{R}^3$, then we can take the basis to be (1,0,0), (0,1,0), (0,0,1). These are called the standard bases, evidently linearly independent, and span the whole \textbf{three-dimension space}.
+
+Similarly, if we consider the vector space of polynomials having degree $\leq $ 5 and having real coefficients. Then $\{1,x,x^2,x^3,x^4,x^5\}$ forms a basis. Every polynomial in this space can be represented as a linear combination of the elements in this basis.Some properties 
+
+
+\textbf{Some properties of bases}
+\begin{enumerate}
+    \item Every vector in a vector space can be written as a linear combination of the basis vectors. 
+    \item Any linearly independent set of vectors that has n elements forms a basis for a n-dimensional vector space.
+    \item Any set of linearly independent vectors which has less than n numbers of vectors can be extended to a basis of an n-dimensional space. 
+    \item If we take a set of k+1 vectors from a k-dimensional vector space, then the set must be linearly dependent. If not, then we will get (k+1) linearly independent vectors that make the dimension of the vector space (k+1), contradicting our earlier knowledge about the vector space, which is k-dimensional. 
+
+    \item If we consider an ordered basis, i.e., a set of bases where the order of the basis vectors matter, we can write a vector in the vector space in the form:
+
+    $$v=\sum_k c_k s_k$$
+
+    where $s_k$ are the basis vectors, then $c_k$ is called the component of vector $v$ with respect to that basis vector.
+
+
+
+    
+\end{enumerate}

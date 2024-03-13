@@ -1,0 +1,105 @@
+\usepackage{lipsum}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+
+\begin{document}
+
+% =======================================================================================
+%\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+
+% =======================================================================================
+%                                   PREAMBLE
+% =======================================================================================
+\coverpage{\TITLE}{\SUBTITLE}{\AUTHOR}{\DATE}{\SUBJECT}
+%----------------------------------------------------------------------------------------
+\newpage
+\tableofcontents
+%==================================================================================
+%                 PART 0
+%
+%
+
+\part{In the Name of GOD, the beneficient}
+
+
+
+% =======================================================================================
+%                                   PART I
+% =======================================================================================
+\part{Why Linear Algebra}
+%----------------------------------------------------------------------------------------
+\newpage
+\chapter{The history of linear algebra} \label{ch:lorem}
+\input{sections_LA/part1/solving_eqn}
+%----------------------------------------------------------------------------------------
+\newpage
+\chapter{Linear Algebra Today: Uses and applications }\label{ch:ipsum}
+\input{sections_LA/part1/science}
+
+% =======================================================================================
+%                                   PART II
+% =======================================================================================
+\part{Vector Spaces and LA}
+%----------------------------------------------------------------------------------------
+\newpage
+\chapter{Vector space} \label{ch:vec_space}
+\input{sections_LA/part2/definitions}
+\newpage
+\input{sections_LA/part2/basis_lin_indep}
+\newpage
+\chapter{Linear Transformations}
+\input{sections_LA/part2/lin_transform}
+
+\chapter{Inner Products}
+\input{sections_LA/part2/Defining Inner Products}
+
+\chapter{Orthogonality}
+\input{sections_LA/part2/Orthogonality}
+\newpage
+\chapter{Inverses}
+\input{sections_LA/part2/Inverses}
+
+\chapter{Determinants}
+\input{sections_LA/part2/determinants}
+
+\chapter{Eigen values and Eigen vectors}
+\input{sections_LA/part2/Diagonalization_eigenvectors}
+
+
+
+
+
+\part{Algorithms in Linear Algebra}
+
+\chapter{Orthogonalization}
+
+
+\input{sections_LA/part3/Grahm_Schmidt}
+
+\chapter{Matrix Decomposition}
+
+\input{sections_LA/part3/Matrix_Decomposition}
+
+% =======================================================================================
+%                                   APPENDICES
+% =======================================================================================
+%\part{Appendices}
+%----------------------------------------------------------------------------------------
+%\newpage
+%\chapter{Vestibulum commodo} \label{ch:commodo}
+%\input{sections_LA/appendices/consectetur}
+%----------------------------------------------------------------------------------------
+%\newpage
+%\chapter{Etiam facilisis} \label{ch:etiam}
+%\input{sections_LA/appendices/adipiscing}
+%----------------------------------------------------------------------------------------
+\newpage
+%\listoffigures
+%\listoftables
+%----------------------------------------------------------------------------------------
+\newpage
+\printbibliography[title = {Aliquam}]
+
+\end{document}

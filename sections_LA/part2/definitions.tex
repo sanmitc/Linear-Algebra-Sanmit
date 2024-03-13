@@ -1,0 +1,62 @@
+\section{Definitions} \label{sec:sed-ultrices}
+
+\subsection{Axioms that make a vector space}
+
+A vector space is always defined over a field. Fields, in simple terms, can be thought of as number systems. It can be $\mathbb{R}$ or the field of the real numbers; it can also be $\mathbb{C}$, which is the field of the complex numbers. 
+
+There are two axioms that are central to the formation of vector spaces. Vector space is defined to be a space and vectors are said to be its elements such that:
+
+\begin{enumerate}
+\item{If two vectors from this space are added, then the resulting vector is also an element of this space. i.e. $v,w \in \mathbb{V} \implies v+w \in \mathbb{V}$}
+\item{If we multiply a vector from this space with a scalar, which is an element of the field, then the resulting quantity or vector should be an element of the vector space.}
+\end{enumerate}
+
+\subsection{More axioms}
+
+Based on these fundamental axioms, we can assert more axioms that build up the notion of a vector space. All properties of the vector space can be derived from these axioms.
+
+
+\begin{enumerate}
+    \item \textbf{Commutativity of addition} v+w=w+v
+    \item \textbf{Existence of zero vector} 
+    v+0=v, and it is unique
+    \item \textbf{Associativity of addition}
+    v+(w+y)=(v+w)+y
+    \item \textbf{Existence of additive inverses}
+    v+(-v)=0
+    \item \textbf{Identity multiplication}
+    1.v=v
+    \item \textbf{Associalivity of Scalar multiplication} a.(bv)=ab.v
+    \item \textbf{Distributivity, both over scalars and vectors} (a+b).v = a.v +b.v 
+    and a.(v+w)=a.v+a.w
+\end{enumerate}
+
+\subsubsection{Examples}
+Here, we take some examples and discuss whether these are vector spaces or not. 
+
+\begin{enumerate}
+    \item The set of continuous functions from $[0, 1]$ to $\mathbb{R}$ (or $\mathbb{C}$) under the usual addition and scalar multiplication operations.
+    \item Polynomials of degree $\leq n$ with coefficients from a field $F$. (Polynomials of degree exactly $n$ do NOT form a vector space.)
+    \item Polynomials with integer coefficients do NOT form a vector space.
+    \item $m \times n$ matrices with complex/real entries.
+    \item The set of all differentiable functions $x, y : \mathbb{R} \to \mathbb{R}$ satisfying $x' = 2x + 3y$, $y' = 4x + 5y$ forms a vector space over $\mathbb{R}$.
+\end{enumerate}
+
+\subsection{Subspaces}
+A subspace is a subset of a vector space that is a vector space in its own right, as it satisfies the fundamental two axioms of the vector spaces, closure under addition and scalar multiplication. 
+
+
+\subsubsection{Examples}
+It is always possible to rigorously investigate a subspace for its properties, such as:
+
+\begin{enumerate}
+    \item If the set of all the differentiable functions form a vector space, then the functions that satisfy a certain differential equation would follow a subspace. 
+    \item If we consider the vector space spanned by all the matrices with real entries then upper triangular matrices form a subspace. 
+    \item If we consider the vector space created by nx1 column vectors, then are the vectors having only positive entries a subspace of this space? No! It is not closed under scalar multiplication. 
+\end{enumerate}
+
+\textbf{Important Definition}
+
+\begin{outline}
+    If there is a set of vectors called $S$, then the vector that is created by all possible linear combinations of these vectors is called the span of the set $S$; it is denoted by the notation $L(S)$.
+\end{outline}
